@@ -1,0 +1,272 @@
+5. Creat Aims class
+public class Aims {
+	public static void main(String[] args) {
+	
+	}
+}
+6. Create the DigitalVideoDisc class and its attributes
+public class DigitalVideoDisc {
+	private String title;
+	private String category;
+	private String director;
+	private int length;
+	private float cost;
+}
+7. Create accessors and mutators for the class DigitalVideoDisc
+public String getTitle() {
+	return title;
+}
+public String getCategory() {
+	return category;
+}
+public String getDirector() {
+	return director;
+}
+public int getLength() {
+	return length;
+}
+public float getCost() {
+	return cost;
+}
+8. Create Constructor method
+public DigitalVideoDisc(String title) {
+	super();
+	this.title = title;
+}
+public DigitalVideoDisc(String category, String title, float cost) {
+	super ();
+	this.category = category;
+	this.title = title;
+	this.cost = cost;
+}
+public DigitalVideoDisc(String directory, String category, String title, float cost) {
+	super ();
+	this.directory = directory;
+	this. category = category;
+	this.title = title;
+	this.cost = cost;
+}
+public DigitalVideoDisc(String title, String category, String directory, int length, float cost) {
+	super ();
+	this.title = title;
+	this. category = category;
+	this.directory = directory;
+	this. length = length;
+	this.cost = cost;
+}
+public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        super();
+        this.title = title;
+        this.category = category;
+        this.director = director;
+        this.length = length;
+        this.cost = cost;
+        if (length <= 0) {
+            System.out.println("the disc cannot be played because its length is zero or less");
+            this.length = -1;
+        } else
+            this.length = length;
+    }
+9. Create the Cart class to work with DigitalVideoDisc
+public class Cart {
+
+    public static final int MAX_NUMBERS_ORDERS =20;
+    private DigitalVideoDisc itemOrdered[]= new DigitalVideoDisc[MAX_NUMBERS_ORDERS];
+    private int qtyOrdered = 0;
+    public void addDigitalVideoDisc(DigitalVideoDisc disc){
+        if(disc.getLength() <= 0)
+            System.out.println("the disc cannot be played because its length is zero or less.");
+        else if(qtyOrdered < MAX_NUMBERS_ORDERS){
+            itemOrdered[qtyOrdered] = disc;
+            qtyOrdered++;
+            System.out.println("the disc \"" + disc.getTitle() + "\" has been added") ;
+            if(qtyOrdered == MAX_NUMBERS_ORDERS - 1)
+                System.out.println("the Cart is almost full.");
+        }
+        else
+            System.out.println("The Cart is full");
+    }
+    public void removeDigitalVideoDisc(DigitalVideoDisc disc){
+        boolean found = false;
+        for(int i = 0; i<qtyOrdered;i++){
+            if(itemOrdered[i].getTitle().equals(disc.getTitle())){
+                found = true;
+                for(int j = i; j<qtyOrdered-1;j++)
+                    itemOrdered[j] = itemOrdered[j+1];
+                itemOrdered[qtyOrdered - 1] = null;
+                qtyOrdered--;
+                System.out.println("the disc \""+ disc.getTitle() + "\" has been removed.");
+                break;
+            }
+        }
+        if(!found)
+            System.out.println("the disc \"" + disc.getTitle() + "\" is not in the cart." );
+    }
+    public float totalCost(){
+        float totalCost = 0;
+        for(int i = 0;i<qtyOrdered;i++)
+            totalCost += itemOrdered[i].getCost();
+        return totalCost;
+    }
+
+}
+10. Create Carts of DigitalVideoDiscs
+public static void main(String[] args) {
+        Cart anOrder = new Cart();
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        anOrder.addDigitalVideoDisc(dvd1);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
+        anOrder.addDigitalVideoDisc(dvd2);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
+        anOrder.addDigitalVideoDisc(dvd3);
+        System.out.println("Total cost is: ");
+        System.out.println(anOrder.totalCost());
+    }
+11. Removing items from the cart
+ public void removeDigitalVideoDisc(DigitalVideoDisc disc){
+        boolean found = false;
+        for(int i = 0; i<qtyOrdered;i++){
+            if(itemOrdered[i].getTitle().equals(disc.getTitle())){
+                found = true;
+                for(int j = i; j<qtyOrdered-1;j++)
+                    itemOrdered[j] = itemOrdered[j+1];
+                itemOrdered[qtyOrdered - 1] = null;
+                qtyOrdered--;
+                System.out.println("the disc \""+ disc.getTitle() + "\" has been removed.");
+                break;
+            }
+        }
+        if(!found)
+            System.out.println("the disc \"" + disc.getTitle() + "\" is not in the cart." );
+    }
+
+----------------------------------------------------------------------------------------------------------------------------------------
+
+
+FULL CODE: 
+package f;
+
+public class Aims {
+    public static void main(String[] args) {
+        Cart anOrder = new Cart();
+        DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", "Roger Allers", 87, 19.95f);
+        anOrder.addDigitalVideoDisc(dvd1);
+        DigitalVideoDisc dvd2 = new DigitalVideoDisc("Star Wars", "Science Fiction", "George Lucas", 87, 24.95f);
+        anOrder.addDigitalVideoDisc(dvd2);
+        DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
+        anOrder.addDigitalVideoDisc(dvd3);
+        System.out.println("Total cost is: ");
+        System.out.println(anOrder.totalCost());
+    }
+
+}
+class DigitalVideoDisc {
+    private String title;
+    private String category;
+    private String director;
+    private int length;
+    private float cost;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getDirector() {
+        return director;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public float getCost() {
+        return cost;
+    }
+
+    public DigitalVideoDisc(String title) {
+        super();
+        this.title = title;
+    }
+
+    public DigitalVideoDisc(String category, String title, float cost) {
+        super();
+        this.category = category;
+        this.title = title;
+        this.cost = cost;
+    }
+
+    public DigitalVideoDisc(String directory, String category, String title, float cost) {
+        super();
+        this.director = director;
+        this.category = category;
+        this.title = title;
+        this.cost = cost;
+    }
+
+    public DigitalVideoDisc(String title, String category, String director, int length, float cost) {
+        super();
+        this.title = title;
+        this.category = category;
+        this.director = director;
+        this.length = length;
+        this.cost = cost;
+        if (length <= 0) {
+            System.out.println("the disc cannot be played because its length is zero or less");
+            this.length = -1;
+        } else
+            this.length = length;
+    }
+}
+
+
+
+
+
+ class Cart {
+
+    public static final int MAX_NUMBERS_ORDERS =20;
+    private DigitalVideoDisc itemOrdered[]= new DigitalVideoDisc[MAX_NUMBERS_ORDERS];
+    private int qtyOrdered = 0;
+    public void addDigitalVideoDisc(DigitalVideoDisc disc){
+        if(disc.getLength() <= 0)
+            System.out.println("the disc cannot be played because its length is zero or less.");
+        else if(qtyOrdered < MAX_NUMBERS_ORDERS){
+            itemOrdered[qtyOrdered] = disc;
+            qtyOrdered++;
+            System.out.println("the disc \"" + disc.getTitle() + "\" has been added") ;
+            if(qtyOrdered == MAX_NUMBERS_ORDERS - 1)
+                System.out.println("the Cart is almost full.");
+        }
+        else
+            System.out.println("The Cart is full");
+    }
+    public void removeDigitalVideoDisc(DigitalVideoDisc disc){
+        boolean found = false;
+        for(int i = 0; i<qtyOrdered;i++){
+            if(itemOrdered[i].getTitle().equals(disc.getTitle())){
+                found = true;
+                for(int j = i; j<qtyOrdered-1;j++)
+                    itemOrdered[j] = itemOrdered[j+1];
+                itemOrdered[qtyOrdered - 1] = null;
+                qtyOrdered--;
+                System.out.println("the disc \""+ disc.getTitle() + "\" has been removed.");
+                break;
+            }
+        }
+        if(!found)
+            System.out.println("the disc \"" + disc.getTitle() + "\" is not in the cart." );
+    }
+    public float totalCost(){
+        float totalCost = 0;
+        for(int i = 0;i<qtyOrdered;i++)
+            totalCost += itemOrdered[i].getCost();
+        return totalCost;
+    }
+
+}
+
+
